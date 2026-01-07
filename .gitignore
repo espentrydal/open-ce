@@ -139,3 +139,27 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Feedstocks (cloned during build)
+*-feedstock/
+
+# Build logs
+*.log
+build_*/
+
+# Backup files
+*.bak
+
+# Test/temp environment files
+envs/test-*.yaml
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
