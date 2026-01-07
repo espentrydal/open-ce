@@ -1,0 +1,27 @@
+diff --git a/pytorch-2.1.2/recipe/build.sh b/pytorch-2.1.2/recipe/build.sh
+index 91d1097..7cc7986 100644
+--- a/pytorch-2.1.2/recipe/build.sh
++++ b/pytorch-2.1.2/recipe/build.sh
+@@ -111,6 +111,22 @@ then
+ 
+ elif [[ $build_type == "cuda" ]]
+ then
++  # Detect CUDA_HOME if not set
++  if [[ -z "${CUDA_HOME}" ]]; then
++    # Try common CUDA locations
++    for cuda_path in /usr/local/cuda-12.2 /usr/local/cuda-12 /usr/local/cuda; do
++      if [[ -d "$cuda_path" && -f "$cuda_path/bin/nvcc" ]]; then
++        export CUDA_HOME="$cuda_path"
++        echo "Detected CUDA_HOME=$CUDA_HOME"
++        break
++      fi
++    done
++  fi
++  if [[ -z "${CUDA_HOME}" ]]; then
++    echo "ERROR: CUDA_HOME not set and could not detect CUDA installation"
++    exit 1
++  fi
++
+   # Enable GPU-related libraries
+   export USE_CUDA=1
+   export USE_CUDNN=1

@@ -1,0 +1,11 @@
+# ADNI Core Environment - PyTorch Focus
+builder_version: ">=13.0.0"
+
+imported_envs:
+  - common-deps.yaml
+  - openblas-env.yaml
+  - pytorch-env.yaml
+  # - transformers-env.yaml  # Temporarily disabled - sentencepiece build issue
+  # - arrow-env.yaml  # Temporarily disabled due to variant conflict
+
+#git_tag_for_env: open-ce-v1.11.7
