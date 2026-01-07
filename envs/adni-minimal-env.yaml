@@ -1,0 +1,34 @@
+# Minimal ADNI Training Environment
+# Excludes GUI, Windows, and problematic dependencies
+builder_version: ">=13.0.0"
+
+imported_envs:
+  - common-deps.yaml
+  - openblas-env.yaml
+  - pytorch-env.yaml
+  - transformers-env.yaml
+
+packages:
+  # Essential data processing
+  - feedstock : https://github.com/conda-forge/joblib-feedstock
+    git_tag : 0321370cf00a8b3c27910f16e7afa71b5a041174
+  - feedstock : https://github.com/conda-forge/huggingface_hub-feedstock
+    git_tag : 7ef40d11fe9b1d2af78b66ea04ea293b1cb21ab2
+    patches :                                                                  #[ppc64le]
+      - feedstock-patches/huggingface-hub/0001-Pinned-typing-extensions.patch  #[ppc64le]
+  - feedstock : https://github.com/conda-forge/datasets-feedstock.git
+    git_tag : 2526f9639ccb6c0e9626e2f7c20849f78fa099c0
+    patches:
+      - feedstock-patches/datasets/0001-Pin-dependencies.patch
+  
+  # Medical imaging (minimal)
+  - feedstock : https://github.com/conda-forge/nibabel-feedstock
+    git_tag : main
+  
+  # Utilities
+  - feedstock : https://github.com/conda-forge/simplejson-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/libutf8proc-feedstock
+    git_tag : main
+
+git_tag_for_env: open-ce-v1.11.7

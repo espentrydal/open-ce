@@ -1,0 +1,27 @@
+# ADNI PyTorch Environment - Core ML packages without Polars
+builder_version: ">=13.0.0"
+
+imported_envs:
+  # Core dependencies
+  - common-deps.yaml
+  - openblas-env.yaml
+  
+  # PyTorch ecosystem
+  - pytorch-env.yaml
+  
+  # Arrow for data processing
+  - arrow-env.yaml
+  
+  # Transformers
+  - transformers-env.yaml
+
+packages:
+  # Essential utilities
+  - feedstock : https://github.com/conda-forge/nibabel-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/libutf8proc-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/simplejson-feedstock
+    git_tag : main
+
+git_tag_for_env: open-ce-v1.11.7

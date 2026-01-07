@@ -1,0 +1,71 @@
+# ADNI Training Environment - Full Build for ppc64le
+# Includes all packages needed from Open-CE plus feedstocks
+builder_version: ">=13.0.0"
+
+imported_envs:
+  # Core dependencies
+  - common-deps.yaml
+  - openblas-env.yaml
+  
+  # PyTorch ecosystem
+  - pytorch-env.yaml
+  - pytorch-extras-env.yaml      # pytorch-lightning
+  
+  # Data processing
+  - arrow-env.yaml               # pyarrow
+  - polars-env.yaml              # polars
+  
+  # Ray (includes tensorflow dependency)
+  - ray-env.yaml                 # ray-core, ray-data, ray-train, ray-serve
+  
+  # Transformers/HuggingFace
+  - transformers-env.yaml        # transformers, tokenizers, datasets, safetensors
+
+packages:
+  # ==========================================
+  # Feedstocks for packages NOT in Open-CE
+  # (needed for ppc64le builds)
+  # ==========================================
+  
+  # Scientific computing
+  - feedstock : https://github.com/conda-forge/h5py-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/scipy-feedstock
+    git_tag : main
+  
+  # Image processing
+  - feedstock : https://github.com/conda-forge/scikit-image-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/pillow-feedstock
+    git_tag : main
+  
+  # Medical imaging
+  - feedstock : https://github.com/conda-forge/nibabel-feedstock
+    git_tag : main
+  
+  # Visualization
+  - feedstock : https://github.com/conda-forge/matplotlib-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/seaborn-feedstock
+    git_tag : main
+  
+  # Utilities
+  - feedstock : https://github.com/conda-forge/ipython-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/libutf8proc-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/simplejson-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/iopath-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/visdom-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/tqdm-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/pyyaml-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/pytz-feedstock
+    git_tag : main
+  # Note: tabulate is noarch and available from conda-forge
+
+git_tag_for_env: open-ce-v1.11.7

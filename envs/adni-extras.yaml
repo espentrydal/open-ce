@@ -1,0 +1,18 @@
+builder_version: ">=13.0.0"
+packages:
+  - feedstock : https://github.com/conda-forge/libutf8proc-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/scikit-image-feedstock
+    git_tag : 71aeae790909c6ffab16bbf3b551f7265ecaa27e
+  - feedstock : https://github.com/conda-forge/nibabel-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/visdom-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/ipython-feedstock
+    git_tag : 96a910f03bff472da7f6227cf3ceb87b7aa787c8
+  - feedstock : https://github.com/conda-forge/iopath-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/simplejson-feedstock
+    git_tag : main
+  - feedstock : https://github.com/conda-forge/pillow-feedstock
+    git_tag : 85cdf8bbcb10d2b3d8c7c63a6b1e2c4891bbc123
