@@ -1,0 +1,10 @@
+# ADNI Full Environment - PyTorch + Ray
+builder_version: ">=13.0.0"
+
+imported_envs:
+  - common-deps.yaml
+  - openblas-env.yaml
+  - pytorch-env.yaml
+  - ray-env.yaml
+
+#git_tag_for_env: open-ce-v1.11.7-p9
