@@ -1,0 +1,6 @@
+builder_version: ">=13.0.0"
+
+packages:
+  - feedstock : pyarrow
+
+git_tag_for_env: open-ce-v1.11.7-p9

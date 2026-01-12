@@ -1,0 +1,31 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Build Script <build@local>
+Date: Tue, 7 Jan 2026 10:00:00 +0000
+Subject: [PATCH] Skip ray-rllib and ray-all to avoid tensorflow dependency
+
+---
+ recipe/meta.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/recipe/meta.yaml b/recipe/meta.yaml
+index 1234567..abcdefg 100644
+--- a/recipe/meta.yaml
++++ b/recipe/meta.yaml
+@@ -31,6 +31,8 @@ outputs:
+ 
+   - name: ray-all
+     build:
++      # Skip ray-all because it depends on ray-rllib which requires tensorflow
++      skip: true
+       run_exports:
+         - {{ pin_subpackage('ray-all', max_pin='x.x.x') }}
+     requirements:
+@@ -190,6 +192,8 @@ outputs:
+ 
+   - name: ray-rllib
+     build:
++      # Skip ray-rllib because it requires tensorflow
++      skip: true
+       entry_points:
+         - rllib = ray.rllib.scripts:cli
+     requirements:

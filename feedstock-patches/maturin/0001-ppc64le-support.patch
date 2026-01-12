@@ -1,0 +1,41 @@
+--- a/recipe/build.sh
++++ b/recipe/build.sh
+@@ -1,14 +1,27 @@
+-# Based on the build.sh for the pysyntect-feedstock recipe.
+-# https://github.com/conda-forge/pysyntect-feedstock/
++#\!/bin/bash
+ set -ex
+ 
+-# Set conda CC as custom CC in Rust
++# Ensure cargo is in PATH from BUILD_PREFIX
++if \! which cargo > /dev/null 2>&1; then
++    if [ -f "$BUILD_PREFIX/bin/cargo" ]; then
++        export PATH="$BUILD_PREFIX/bin:$PATH"
++    fi
++fi
++
++# Set conda CC as custom CC in Rust for all platforms
+ export CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER=$CC
+ export CARGO_TARGET_X86_64_APPLE_DARWIN_LINKER=$CC
+ export CARGO_TARGET_AARCH64_APPLE_DARWIN_LINKER=$CC
++export CARGO_TARGET_POWERPC64LE_UNKNOWN_LINUX_GNU_LINKER=$CC
+ 
+ # Print Rust version
+-rustc --version
++rustc --version || echo "rustc not in PATH"
++cargo --version || echo "cargo not in PATH"
+ 
+ # https://github.com/rust-lang/cargo/issues/10583#issuecomment-1129997984
+ export CARGO_NET_GIT_FETCH_WITH_CLI=true
+@@ -16,7 +29,11 @@ export CARGO_NET_GIT_FETCH_WITH_CLI=true
+ export OPENSSL_NO_VENDOR=1
+-export MATURIN_SETUP_ARGS="--no-default-features --features=cli-completion,log,scaffolding,upload,native-tls" # dont enable cross-compile
++export OPENSSL_DIR="$PREFIX"
++export OPENSSL_LIB_DIR="$PREFIX/lib"
++export OPENSSL_INCLUDE_DIR="$PREFIX/include"
++
++# Minimal features - avoid native-tls and upload which need more dependencies
++export MATURIN_SETUP_ARGS="--no-default-features --features=cli-completion,log,scaffolding"
+ 
+ # Install wheel manually
+ $PYTHON -m pip install . --no-deps --ignore-installed -vv

@@ -1,0 +1,66 @@
+# ADNI Ray Environment - Ray without RLlib (no tensorflow)
+builder_version: ">=13.0.0"
+
+channels:
+  - file:///home/espen/open-ce-build/condabuild
+  - conda-forge
+  - defaults
+
+imported_envs:
+  - common-deps.yaml
+  - openblas-env.yaml
+  - arrow-env.yaml
+  - pytorch-env.yaml
+
+packages:
+  # Rust toolchain
+  - feedstock : https://github.com/conda-forge/rust-feedstock.git
+    git_tag : c94f3a87eef0c274fa3c8f6f8a6ce364caa30437
+    patches :
+      - feedstock-patches/rust/0001-Fixed-build.patch
+  - feedstock : https://github.com/conda-forge/rust-activation-feedstock
+    git_tag : 15daecc326884626192eecfe6279580edaad0855
+    patches :
+      - feedstock-patches/rust-activation/0001-Fixed-build.patch
+
+  # Ray dependencies
+  - feedstock : https://github.com/AnacondaRecipes/annotated-types-feedstock
+    git_tag : 44491b67fc663a52d874f4d1e7f8b77cca020dc9
+  - feedstock : https://github.com/conda-forge/uvicorn-feedstock
+    git_tag : f5a97e4e7ecf157909e6b6344eb4d3f694680433
+  - feedstock : https://github.com/AnacondaRecipes/cfitsio-feedstock
+    git_tag: f965e25fdec2b5dee0965cfaf2635384ae8e16ed
+    patches: 
+      - feedstock-patches/cfitsio/0001-Update-sha256-value.patch
+  - feedstock : https://github.com/conda-forge/starlette-feedstock
+    git_tag : a4aef1199674dbb30842bf7c7816e8cfa1cffefd
+  - feedstock : https://github.com/conda-forge/python-multipart-feedstock
+    git_tag : ac3f03bf718b99e92676ee0cc17c04d1f4301c24
+    patches:
+      - feedstock-patches/python-multipart/0001-Changed-source-for-python-multipart.patch
+  - feedstock : https://github.com/conda-forge/aiorwlock-feedstock
+    git_tag : 1431680c5d1e8b842704ce40ced10377cade59e7
+  - feedstock : https://github.com/conda-forge/fastapi-feedstock
+    git_tag : 3dd382b293b66015609d422170f4e0719ae58100
+    patches:
+      - feedstock-patches/fastapi/0001-Open-ce-changes.patch
+  - feedstock : https://github.com/conda-forge/anyio-feedstock
+    git_tag : 4204c3f90b747bcf6673f61a77f40aa16239612c
+    patches:
+      - feedstock-patches/anyio/0001-Skipped-failed-tests.patch
+  - feedstock : https://github.com/AnacondaRecipes/pydantic-core-feedstock
+    git_tag : b4a76d6016ac5c555a0cf1763d887f5c67c2d210
+    patches:
+      - feedstock-patches/pydantic-core/0001-changes-for-opence.patch
+  - feedstock : https://github.com/AnacondaRecipes/pydantic-feedstock
+    git_tag: 6148ac902c701e69aab9d00846c19e1565b7e083
+  - feedstock : dm-tree
+  - feedstock : https://github.com/AnacondaRecipes/opencensus-feedstock
+    git_tag : 29535305e9e7456f6b82758366a581cfa8512bfd
+    patches :
+      - feedstock-patches/opencensus/0001-Remove-constraint-from-google-api-core.patch
+
+  # Ray packages - with patch to skip ray-rllib and use system java
+  - feedstock : ray-packages
+
+#git_tag_for_env: open-ce-v1.11.7-p9

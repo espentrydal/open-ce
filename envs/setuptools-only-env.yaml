@@ -1,0 +1,9 @@
+builder_version: ">=13.0.0"
+
+packages:
+  - feedstock : https://github.com/conda-forge/setuptools-feedstock
+    git_tag : 66dcc5d189336642efd1840d848ed91c570a8db2
+    patches :
+      - feedstock-patches/setuptools/0001-Fix-backporting-CVE-2025-47273.patch
+
+git_tag_for_env: open-ce-v1.11.7-p9

@@ -273,7 +273,8 @@ scikit_learn:
 sentencepiece:
   - 0.1.99
 setuptools:
-  - 76.*
+  # - 76.* # Version 76 does not exist, using 75.8.* instead
+  - 75.8.*
 setuptools_rust:
   - 1.5.*
 six:

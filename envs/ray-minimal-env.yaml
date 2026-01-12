@@ -1,0 +1,10 @@
+# Minimal Ray Environment - just ray-core
+builder_version: ">=13.0.0"
+
+channels:
+  - file:///home/espen/open-ce-build/condabuild
+  - conda-forge
+  - defaults
+
+packages:
+  - feedstock : ray-packages

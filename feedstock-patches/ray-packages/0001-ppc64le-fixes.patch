@@ -1,0 +1,39 @@
+--- recipe/meta.yaml.orig	2026-01-07 09:46:47.737505579 +0100
++++ recipe/meta.yaml	2026-01-07 09:56:10.447763487 +0100
+@@ -31,6 +31,8 @@
+ 
+ outputs:
+   - name: ray-all
++    build:
++      skip: true
+     requirements:
+       host:
+         - python {{ python }}
+@@ -74,7 +76,7 @@
+         - packaging
+         # pickle5 needs to be here, otherwise setup.py tries
+         # to install it and it fails on conda-forge Windows CI
+-        - {{ cdt('java-11-openjdk-devel') }}  # [ppc64le or s390x]
++        # USE SYSTEM JAVA  # [ppc64le or s390x]
+         - openjdk {{ openjdk }}               # [x86_64]
+       run:
+         - python {{ python }}
+@@ -191,6 +193,7 @@
+ 
+   - name: ray-rllib
+     build:
++      skip: true
+       entry_points:
+         - rllib = ray.rllib.scripts:cli
+     requirements:
+@@ -205,8 +208,8 @@
+         - pyyaml {{ pyyaml }}
+         - scikit-image
+         - scipy {{ scipy }}
+-        - tensorflow-base {{ tensorflow }}
+-        - keras {{ keras }}
++        # REMOVED: tensorflow-base
++        # REMOVED: keras
+         - rich
+         - openblas {{ openblas }}
+         - typer

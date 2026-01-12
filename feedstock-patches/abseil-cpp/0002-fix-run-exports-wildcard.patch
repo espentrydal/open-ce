@@ -1,0 +1,11 @@
+--- a/recipe/meta.yaml
++++ b/recipe/meta.yaml
+@@ -58,7 +58,7 @@ outputs:
+     build:
+       string: cxx{{ cxx_standard }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+       run_exports:
+-        - libabseil ={{ version }}=cxx{{ cxx_standard }}*
++        - libabseil ={{ version }}
+ 
+     requirements:
+       build:

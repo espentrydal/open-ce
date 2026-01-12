@@ -1,0 +1,12 @@
+builder_version: ">=13.0.0"
+
+packages:
+  - feedstock : cudatoolkit
+  - feedstock : https://github.com/conda-forge/abseil-cpp-feedstock.git
+    git_tag : 48ac432e7dcf12dcdc64248da912dbe5637fdfdd
+    patches :
+      - feedstock-patches/abseil-cpp/0002-fix-run-exports-wildcard.patch
+  - feedstock : grpc-cpp
+  - feedstock : pyarrow
+  - feedstock : orc
+git_tag_for_env: open-ce-v1.11.7-p9
