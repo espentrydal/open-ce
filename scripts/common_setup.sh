@@ -5,12 +5,17 @@
 set -e
 
 # ============================================
+# Auto-detect paths
+# ============================================
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+OPENCE_DIR="$(dirname "$SCRIPT_DIR")"  # Parent of scripts/ is the repo root
+
+# ============================================
 # Configuration - Modify these as needed
 # ============================================
-PROXY_URL="http://proxy.ihelse.net:3128"
-CUDA_VERSION="12.2"
-CONDA_BASE="$HOME/miniforge3"
-OPENCE_DIR="$HOME/open-ce-build/open-ce"
+PROXY_URL="${PROXY_URL:-http://proxy.ihelse.net:3128}"
+CUDA_VERSION="${CUDA_VERSION:-12.2}"
+CONDA_BASE="${CONDA_BASE:-$HOME/miniforge3}"
 
 # ============================================
 # Proxy Configuration
@@ -52,6 +57,7 @@ export MAX_JOBS="${MAX_JOBS:-$RECOMMENDED_CORES}"
 # ============================================
 if [[ ! -f "$CONDA_BASE/etc/profile.d/conda.sh" ]]; then
     echo "ERROR: Conda not found at $CONDA_BASE"
+    echo "Set CONDA_BASE environment variable to your conda installation"
     exit 1
 fi
 

@@ -163,3 +163,7 @@ envs/test-*.yaml
 # OS files
 .DS_Store
 Thumbs.db
+
+# Duplicate/misplaced patch directories
+envs/feedstock-patches/
+envs/**/feedstock-patches/
